@@ -1,0 +1,108 @@
+programa
+{
+	inclua biblioteca Util --> u
+	
+	funcao inicio()
+	{
+          cadeia loteria
+          inteiro dezenas
+          inteiro mega_sena[15]
+          inteiro numero_sorteado
+	
+		escreva(" Qual tipo de loteira vocÃª quer apostar?. obs:responda apenas com o nome da loteria. \n")
+          leia(loteria)
+          
+		se (loteria == "mega") {
+			
+      
+               escreva(" Quantas dezenas vocÃª deseja?. obs:responda apenas com numeros. \n ")
+               leia(dezenas)
+
+               se(dezenas < 6 ou dezenas > 15)
+               escreva("apenas nÃºmeros no intervalo entre 6 e 15")
+               senao
+
+               para(inteiro i=0; i < dezenas; i++){
+               	numero_sorteado = u.sorteia(1, 60)
+               	mega_sena[i] = numero_sorteado
+               	
+               	//escreva(numero_sorteado)
+               }
+
+               organizaLista(mega_sena)
+               exibaLista(mega_sena)
+               
+		}
+
+		se (loteria == "quina") {
+			
+               inteiro quina[15]
+               
+               escreva(" Quantas dezenas vocÃª deseja?. obs:responda apenas com numeros. \n ")
+               leia(dezenas)
+
+               para(inteiro i=0; i < dezenas; i++){
+               	numero_sorteado = u.sorteia(1, 80)
+               	quina[i] = numero_sorteado
+               	
+               	//escreva(numero_sorteado)
+               }
+
+               organizaLista(quina)
+               exibaLista(quina)
+               
+		}
+	 
+	}      //fim funÃ§Ã£o inicio
+
+      funcao organizaLista(inteiro lista[])
+      {
+      	inteiro tamanho = contaElementos(lista)
+      	
+          //ORDENAR
+		inteiro auxiliar
+		para(inteiro i=0; i < tamanho; i++){
+
+			para(inteiro j = i + 1; j < tamanho; j++){
+
+				se(lista[i] > lista[j]){
+					auxiliar = lista[i]
+					lista[i] = lista[j]
+					lista[j] = auxiliar
+				}
+			}
+		}
+	
+     }           //fim funÃ§Ã£o organizar lista
+
+      funcao exibaLista(inteiro lista[])
+      {
+      	inteiro tamanho = contaElementos(lista)
+      	//exibe a lista de numeros sorteados
+		para(inteiro i=0; i <  tamanho; i++){
+			escreva(lista[i], " ")
+			
+		}
+      	
+      }
+
+	funcao inteiro contaElementos(inteiro lista[])
+	{
+		inteiro tamanhoReal = 0
+		inteiro tamanho = u.numero_elementos(lista)
+
+
+		para(inteiro i=0; i <  tamanho; i++)
+		{
+			se (lista[i] != 0){ 
+
+				tamanhoReal++
+		     }
+			
+		}
+
+		retorne tamanhoReal
+		
+	}
+      
+}
